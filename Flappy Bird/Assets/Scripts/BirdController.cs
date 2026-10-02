@@ -32,6 +32,7 @@ public class BirdController : MonoBehaviour
     {
         rb.gravityScale = gravity;
         rb.velocity = new Vector2(0, jumpSpeed);
+        FindAnyObjectByType<TubeSpawner>().StartSpawning();
     }
 
     void BirdRotate()
