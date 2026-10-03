@@ -10,6 +10,7 @@ public class BirdController : MonoBehaviour
 
     Rigidbody2D rb;
     Animator anim;
+    bool live = true;
 
     // Start is called before the first frame update
     void Start()
@@ -30,9 +31,9 @@ public class BirdController : MonoBehaviour
 
     void Jump()
     {
+        if (live == false) return;
         rb.gravityScale = gravity;
         rb.velocity = new Vector2(0, jumpSpeed);
-        FindAnyObjectByType<TubeSpawner>().StartSpawning();
     }
 
     void BirdRotate()
@@ -49,5 +50,14 @@ public class BirdController : MonoBehaviour
         if(rz < 300 && rz > 180)
             transform.rotation = Quaternion.Euler(0, 0, 300);
 
+    }
+
+
+    public void Die()
+    {
+        if (live == false) return;
+        live = false;
+        anim.enabled = false;
+        // добавить эффекты и звуки
     }
 }
