@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public enum GameState
 {
@@ -15,10 +16,12 @@ public class GameManager : MonoBehaviour
     public static GameManager Instance;
 
     [SerializeField] GameObject overPanel;
-    
+    public static int Score = 0;
+    [SerializeField] TMP_Text scoreText;
     // Start is called before the first frame update
     void Start()
     {
+        Score = 0;
         state = GameState.READY;
         Instance = this;
         overPanel.SetActive(false);
@@ -60,5 +63,12 @@ public class GameManager : MonoBehaviour
             m.speed = 0;
         }
 
+    }
+
+
+    public void AddScore()
+    {
+        Score += 1;
+        scoreText.text = "" + Score;
     }
 }
