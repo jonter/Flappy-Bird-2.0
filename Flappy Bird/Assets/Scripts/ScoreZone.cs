@@ -10,5 +10,6 @@ public class ScoreZone : MonoBehaviour
         if (b == null) return;
         if (GameManager.state != GameState.PLAYING) return;
         GameManager.Instance.AddScore();
+        GetComponent<AudioSource>().Play();
     }
 }

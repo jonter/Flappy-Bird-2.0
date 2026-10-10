@@ -12,11 +12,15 @@ public class BirdController : MonoBehaviour
     Animator anim;
     bool live = true;
 
+    AudioSource audio;
+    [SerializeField] AudioClip dieSound;
+
     // Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
+        audio = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -34,6 +38,7 @@ public class BirdController : MonoBehaviour
         if (live == false) return;
         rb.gravityScale = gravity;
         rb.velocity = new Vector2(0, jumpSpeed);
+        audio.Play();
     }
 
     void BirdRotate()
@@ -58,6 +63,6 @@ public class BirdController : MonoBehaviour
         if (live == false) return;
         live = false;
         anim.enabled = false;
-        // добавить эффекты и звуки
+        audio.PlayOneShot(dieSound);
     }
 }
